@@ -22,7 +22,7 @@ console.log("MongoDB connection error:", error)
 
 mangoConnect();
 
-
+const alerteRoutes= require("./routes/alerteRoutes");
 const tacheRoutes= require("./routes/tacheRoutes");
 const planningRoutes= require("./routes/planningRoutes");
 
@@ -30,6 +30,7 @@ app.use(cors());
 app.use(express.json());
 
 
+app.use("/api/alertes", alerteRoutes);
 app.use("/api/taches", tacheRoutes);
 app.use("/api/plannings", planningRoutes);  
 
