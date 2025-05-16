@@ -44,6 +44,23 @@ res.status(500).json({message : error.message});
 });
 
 
+//modifer un planning
+
+router.put("/:id", async (req, res)=>{
+    try{
+        const planningUpdated = await Planning.findByIdAndUpdate(req.params.id, req.body, {new : true});
+        if (!planningUpdated){
+            return res.status(404).json({message : " planning non trouvé"});
+        }
+
+        res.status(200).json(planningUpdated);
+
+    }catch(error){
+        res.status(500).json ({message : error.message});
+    }
+});
+
+
 
 
 
