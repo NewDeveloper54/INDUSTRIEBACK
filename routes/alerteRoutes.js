@@ -50,4 +50,21 @@ res.status(500).json({message : error.message});
 })
 
 
+//modifer une alerte
+
+router.put("/:id", async(req, res) =>{
+
+    try{
+        const alertUpdated = await Alerte.findByIdAndUpdate(req.params.id, req.body, {new : true});
+        if (!alertUpdated) {
+      return res.status(404).json({ message: "Alerte non trouvée." });
+    }
+        res.status(200).json(alertUpdated);
+
+    }catch(error){
+        res.status(500).json({message: error.message})
+    }
+});
+
+
 module.exports = router;
